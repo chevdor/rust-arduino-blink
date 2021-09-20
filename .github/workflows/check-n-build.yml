@@ -1,0 +1,59 @@
+# This workflow runs on every push and checks whether everything looks good
+
+name: Check & Build
+
+on:
+  push:
+    tags:
+      - "!v*"
+    branches:
+      - "*"
+
+jobs:
+  quick_check:
+    strategy:
+      matrix:
+        os: ["ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: nightly-2021-01-07
+          override: true
+          components: rustfmt
+
+      - name: Cache Dependencies & Build Outputs
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-${{ matrix.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - uses: actions/checkout@v2
+
+      - name: Cargo fmt
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+
+      - name: Cargo check
+        uses: actions-rs/cargo@v1
+        with:
+          command: check
+
+      - name: Cargo Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build --locked
+
+      - name: Saver artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: firmware
+          path: |
+            target/avr-atmega328p/debug/*.elf
