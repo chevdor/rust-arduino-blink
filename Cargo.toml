@@ -6,10 +6,11 @@ version = "0.1.0"
 
 [dependencies]
 arduino-uno = {git = "https://github.com/Rahix/avr-hal", rev = "536c5d"}
+# demolib = {path = "./demolib"}
+embedded-hal = "0.2.3"
+nb = "1.0.0"
 panic-halt = "0.2"
 ufmt = "0.1.0"
-nb = "1.0.0"
-embedded-hal = "0.2.3"
 
 # Configure the build for minimal size
 [profile.dev]
@@ -26,4 +27,4 @@ panic = "abort"
 
 [patch.crates-io]
 # XXX: Temporary fix for avr-rust/rust#148
-ufmt = { git = "https://github.com/Rahix/ufmt.git", rev = "12225dc1678e42fecb0e8635bf80f501e24817d9" }
+ufmt = {git = "https://github.com/Rahix/ufmt.git", rev = "12225dc1678e42fecb0e8635bf80f501e24817d9"}

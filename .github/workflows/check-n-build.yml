@@ -14,6 +14,7 @@ jobs:
     strategy:
       matrix:
         os: ["ubuntu-latest"]
+        targets: ["avr-atmega328p", "avr-atmega2560"]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Install Rust
@@ -57,11 +58,11 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --locked
+          args: --locked --target ${{ matrix.target }}
 
       - name: Saver artifact
         uses: actions/upload-artifact@v2
         with:
           name: firmware
           path: |
-            target/avr-atmega328p/debug/*.elf
+            target/**/debug/*.elf

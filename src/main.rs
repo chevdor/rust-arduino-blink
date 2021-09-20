@@ -25,3 +25,13 @@ fn main() -> ! {
         stutter_blink(&mut led, 12);
     }
 }
+
+#[cfg(test)]
+extern crate std;
+mod test_super {
+
+	#[test]
+	fn test_() {
+		assert_eq!(1+1, 2)
+	}
+}
