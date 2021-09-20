@@ -16,3 +16,7 @@ flash: build
     #!/usr/bin/env bash
     FILE=target/avr-atmega328p/debug/rust-arduino-blink.elf
     avrdude -q -Cavrdude.conf -patmega328p -carduino -P{{DEVICE}} -D "-Uflash:w:$FILE:e"
+
+# use ravedude to upload the firmware and connect over serial console
+run:
+    cargo run

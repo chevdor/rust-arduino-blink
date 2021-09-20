@@ -22,7 +22,14 @@ jobs:
           profile: minimal
           toolchain: nightly-2021-01-07
           override: true
-          components: rustfmt
+          components: rustfmt, rust-src
+
+      - name: Install avr-gcc
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install arduino
+          sudo apt-get install -y gcc-avr
+          avr-gcc --version
 
       - name: Cache Dependencies & Build Outputs
         uses: actions/cache@v2
@@ -49,7 +56,8 @@ jobs:
       - name: Cargo Build
         uses: actions-rs/cargo@v1
         with:
-          command: build --locked
+          command: build
+          args: --locked
 
       - name: Saver artifact
         uses: actions/upload-artifact@v2

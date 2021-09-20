@@ -1,25 +1,29 @@
 [package]
-name = "rust-arduino-blink"
-version = "0.1.0"
 authors = ["creativcoder <creativcoders@gmail.com>"]
 edition = "2018"
+name = "rust-arduino-blink"
+version = "0.1.0"
 
 [dependencies]
-panic-halt = "0.2.0"
-
-[dependencies.arduino-uno]
-git = "https://github.com/Rahix/avr-hal"
-rev = "536c5d"
+arduino-uno = {git = "https://github.com/Rahix/avr-hal", rev = "536c5d"}
+panic-halt = "0.2"
+ufmt = "0.1.0"
+nb = "1.0.0"
+embedded-hal = "0.2.3"
 
 # Configure the build for minimal size
 [profile.dev]
-panic = "abort"
 lto = true
 opt-level = "s"
+panic = "abort"
 
 [profile.release]
-panic = "abort"
 codegen-units = 1
 debug = true
 lto = true
 opt-level = "s"
+panic = "abort"
+
+[patch.crates-io]
+# XXX: Temporary fix for avr-rust/rust#148
+ufmt = { git = "https://github.com/Rahix/ufmt.git", rev = "12225dc1678e42fecb0e8635bf80f501e24817d9" }

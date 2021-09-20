@@ -138,7 +138,10 @@ name = "rust-arduino-blink"
 version = "0.1.0"
 dependencies = [
  "arduino-uno",
+ "embedded-hal",
+ "nb 1.0.0",
  "panic-halt",
+ "ufmt",
 ]
 
 [[package]]
@@ -179,8 +182,7 @@ dependencies = [
 [[package]]
 name = "ufmt"
 version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2e7ecea7ef79d3f8f878eee614afdf5256475c63ad76139d4da6125617c784a0"
+source = "git+https://github.com/Rahix/ufmt.git?rev=12225dc1678e42fecb0e8635bf80f501e24817d9#12225dc1678e42fecb0e8635bf80f501e24817d9"
 dependencies = [
  "proc-macro-hack",
  "ufmt-macros",
@@ -190,8 +192,7 @@ dependencies = [
 [[package]]
 name = "ufmt-macros"
 version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ed813e34a2bfa9dc58ee2ed8c8314d25e6d70c911486d64b8085cb695cfac069"
+source = "git+https://github.com/Rahix/ufmt.git?rev=12225dc1678e42fecb0e8635bf80f501e24817d9#12225dc1678e42fecb0e8635bf80f501e24817d9"
 dependencies = [
  "proc-macro-hack",
  "proc-macro2",
@@ -202,8 +203,7 @@ dependencies = [
 [[package]]
 name = "ufmt-write"
 version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e87a2ed6b42ec5e28cc3b94c09982969e9227600b2e3dcbc1db927a84c06bd69"
+source = "git+https://github.com/Rahix/ufmt.git?rev=12225dc1678e42fecb0e8635bf80f501e24817d9#12225dc1678e42fecb0e8635bf80f501e24817d9"
 
 [[package]]
 name = "unicode-xid"
